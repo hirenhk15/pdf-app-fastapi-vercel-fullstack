@@ -48,8 +48,7 @@ def delete_pdf(db: Session, id: int):
 def upload_pdf(db: Session, file: UploadFile, file_name: str):
     s3_client = Settings.get_s3_client()
     BUCKET_NAME = Settings().AWS_S3_BUCKET
-    print("Bucket Name:: ", BUCKET_NAME)
-
+    
     try:
         s3_client.upload_fileobj(
             file.file,

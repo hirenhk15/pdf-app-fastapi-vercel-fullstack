@@ -23,9 +23,7 @@ def create_pdf(pdf: PDFRequest, db: Session = Depends(get_db)):
 
 @router.post("/upload", response_model=PDFResponse, status_code=status.HTTP_201_CREATED)
 def upload_pdf(file: UploadFile = File(...), db: Session = Depends(get_db)):
-    print("File::: ", file)
     file_name = f"{uuid4()}-{file.filename}"
-    print("FileName::: ", file_name)
     return crud.upload_pdf(db, file, file_name)
 
 @router.get("", response_model=List[PDFResponse])
